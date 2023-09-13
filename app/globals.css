@@ -25,3 +25,14 @@ html {
     max-width: 640px;
   }
 }
+.scrollcontainer::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollcontainer::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.scrollcontainer::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-zinc-200 dark:bg-[#212121];
+}

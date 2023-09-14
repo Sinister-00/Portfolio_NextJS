@@ -36,7 +36,7 @@ export default function Page() {
           <a
             className="bg-transparent border border-[#ecebeb] hover:border-[#999] dark:border-[#333] hover:dark:bg-[#ffffff05]
               transition-colors
-              p-2 flex flex-col space-y-1.5 !no-underline rounded-sm"
+              p-2 flex flex-col space-y-1.5 !no-underline rounded-md"
             rel="noopener noreferrer"
             target="_blank"
             href={repo.url}

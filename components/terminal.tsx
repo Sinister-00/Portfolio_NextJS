@@ -1,8 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { useTheme } from "next-themes";
-
+import { TerminalContext } from "../app/providers";
 const commands = ["cd", "help", "welcome", "clear", "theme", "date"];
 
 const routes = {
@@ -32,11 +32,10 @@ const helpCommand = [
     description: "eg: theme <dark | light>",
   },
   {
-    command:"date",
-    description:"Current date and time"
-  }
+    command: "date",
+    description: "Current date and time",
+  },
 ];
-
 
 export default function Terminal() {
   const [history, setHistory] = useState<string[]>(["welcome"]);
@@ -46,6 +45,8 @@ export default function Terminal() {
   const [value, setValue] = useState("");
   const router = useRouter();
   const { setTheme } = useTheme();
+
+  const { isOpen, toggleIsOpen } = useContext(TerminalContext);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -75,8 +76,9 @@ export default function Terminal() {
   };
 
   useEffect(() => {
-    if (history.length > 3) scrollToBottom();
+    if (history.length > 1) scrollToBottom();
   }, [history.length]);
+  if (!isOpen) return null;
 
   return (
     <div
@@ -85,7 +87,10 @@ export default function Terminal() {
     >
       <div className="sticky top-0 left-0 right-0 h-6 bg-zinc-300 dark:bg-[#323232] flex pl-2 ">
         <div className="flex space-x-2 items-center my-auto">
-          <div className="h-3 w-3 bg-red-500 rounded-full"></div>
+          <div
+            className="h-3 w-3 bg-red-500 rounded-full flex justify-center items-center"
+            onClick={toggleIsOpen}
+          ></div>
           <div className="h-3 w-3 bg-yellow-500 rounded-full"></div>
           <div className="h-3 w-3 bg-green-600 rounded-full"></div>
         </div>
@@ -120,10 +125,10 @@ export default function Terminal() {
               <span className="text-pink-500 dark:text-pink-300">{`~ `}</span>
             </p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="flex-1 ml-2">
               <input
                 type="text"
-                className="flex-1 ml-2 border-none outline-none bg-transparent"
+                className="w-full border-none outline-none bg-transparent"
                 autoFocus
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
@@ -177,12 +182,12 @@ function CmdResult({
     const currentTime = new Date().toLocaleTimeString();
     return <p>{`Current Date and Time: ${currentDate} ${currentTime}`}</p>;
   }
-  if (type === "contact") {
-    return (
-      <p>
-        <a href="mailto:youremail@gmail.com">Contact Us</a>
-      </p>
-    );
-  }
+  // if (type === "contact") {
+  //   return (
+  //     <p>
+  //       <a href="mailto:youremail@gmail.com">Contact Us</a>
+  //     </p>
+  //   );
+  // }
   return null;
 }

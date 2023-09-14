@@ -1,9 +1,19 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
-import { ReactNode } from "react";
+import { createContext, useState } from "react";
 
-export default function Providers({ children }: { children: ReactNode }) {
+export const TerminalContext = createContext({
+  isOpen: true,
+  toggleIsOpen: () => {},
+});
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleIsOpen = () => {
+    setIsOpen((value) => !value);
+  };
   return (
     <ThemeProvider
       attribute="class"
@@ -11,8 +21,9 @@ export default function Providers({ children }: { children: ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      {" "}
-      {children}
+      <TerminalContext.Provider value={{ isOpen, toggleIsOpen }}>
+        {children}
+      </TerminalContext.Provider>
     </ThemeProvider>
   );
 }

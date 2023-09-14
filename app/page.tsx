@@ -2,8 +2,9 @@ export default function Page() {
   return (
     <div>
       <p className="text-sm">
-        Coding for survival, with a hint of passion on the side. Likes to work
-        on frontend. I write javascript, typescript, react, node.js
+        Aspiring developer and student with a knack for frontend magic. I'm
+        well-versed in JavaScript, TypeScript, React, and Node.js, and I'm eager
+        to kickstart my career in a dynamic environment.{" "}
       </p>
     </div>
   );

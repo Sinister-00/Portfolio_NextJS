@@ -31,7 +31,7 @@ export default function Topbar() {
           </p>
         </div>
         <div className="relative flex items-center space-x-2 py-2">
-          <SocialsLink href="https://github.com/SINISTER-code">
+          <SocialsLink href="https://github.com/Sinister-00">
             <GithubIcon />
           </SocialsLink>
           <SocialsLink href="https://www.linkedin.com/in/swapnil-2069961ba/">
@@ -90,7 +90,7 @@ export default function Topbar() {
           className="underline underline-offset-4"
           rel="noopener noreferrer"
           target="_blank"
-          href="https://drive.google.com/file/d/1VYV86auQKW-euU6-Xk1xTx37hwLkJ3VW/view?usp=sharing"
+          href="https://drive.google.com/file/d/1eEfG5zNyrZs-tqtRAkChn82mZZpNylzK/view?usp=sharing"
         >
           resume
         </a>

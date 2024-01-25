@@ -3,7 +3,17 @@ import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect, useContext } from "react";
 import { useTheme } from "next-themes";
 import { TerminalContext } from "../app/providers";
-const commands = ["cd", "help", "welcome", "clear", "theme", "date"];
+const commands = [
+  "cd",
+  "help",
+  "welcome",
+  "clear",
+  "theme",
+  "date",
+  "contact",
+  "leetcode",
+  // "Achievements",
+];
 
 const routes = {
   about: "/",
@@ -35,6 +45,18 @@ const helpCommand = [
     command: "date",
     description: "Current date and time",
   },
+  {
+    command: "contact",
+    description: "displays contact information",
+  },
+  {
+    command: "leetcode",
+    description: "displays leetcode profile",
+  },
+  // {
+  //   command: "Achievements",
+  //   description: "displays Achievements",
+  // },
 ];
 
 export default function Terminal() {
@@ -182,12 +204,60 @@ function CmdResult({
     const currentTime = new Date().toLocaleTimeString();
     return <p>{`Current Date and Time: ${currentDate} ${currentTime}`}</p>;
   }
-  // if (type === "contact") {
-  //   return (
-  //     <p>
-  //       <a href="mailto:youremail@gmail.com">Contact Us</a>
-  //     </p>
-  //   );
+  let contacted = false;
+  if (type === "contact" && !contacted) {
+    contacted = true;
+    const email = "swapnildhamu76@gmail.com";
+    const mobile = "+916239320323";
+    const mailtoLink = `mailto:${email}`;
+    const calltoLink = `tel:${mobile}`;
+
+    return (
+      <div className="flex flex-col space-y-2">
+        <a
+          className="underline underline-offset-4 text-blue-500 dark:text-blue-300"
+          href={mailtoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {email}
+        </a>
+        <a
+          className="underline underline-offset-4 text-blue-500 dark:text-blue-300"
+          href={calltoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {mobile}
+        </a>
+      </div>
+    );
+  }
+  if (type === "leetcode") {
+    const leetcode = "https://leetcode.com/sswapnil_be20/";
+    return (
+      <p>
+        {"You can check out my leetcode profile here: "}
+        {
+          <a
+            className="underline underline-offset-4 text-blue-500 dark:text-blue-300"
+            href={leetcode}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {leetcode}
+          </a>
+        }
+      </p>
+    );
+  }
+  // if (type === "Achievements") {
+
+  //   // return (
+  //   //   <p>
+  //   //     {"You can check out my Achievements here: "}
+  //   //   </p>
+  //   // );
   // }
   return null;
 }

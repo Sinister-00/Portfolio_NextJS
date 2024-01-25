@@ -27,6 +27,14 @@ export default function Page() {
       description:
         "Autonomous drone for weed detection using Raspberry Pi and ML, aiding precision herbicide application",
     },
+    {
+      id: "5",
+      name: "CogniCodeML: v1.0 - C++ Consciousness Unleashed",
+      url: "https://github.com/Sinister-00/Machine_Learning",
+      description:
+        "A C++ repository housing kNN, K-Means, and Neural Network implementations on MNIST Handwriting and Iris Datasets, optimized for efficiency and clarity.",
+    },
+    
   ];
 
   return (
